@@ -9,9 +9,7 @@ import youtube_dl
 from async_timeout import timeout
 from discord.ext import commands
 
-#Codage de Doc Lama 
 
-# Silence useless bug reports messages
 youtube_dl.utils.bug_reports_message = lambda: ''
 
 
@@ -220,7 +218,7 @@ class VoiceState:
 
             if not self.loop:
                 try:
-                    async with timeout(180):  # 3 minutes TIMER
+                    async with timeout(180): 
                         self.current = await self.songs.get()
                 except asyncio.TimeoutError:
                     self.bot.loop.create_task(self.stop())
@@ -417,7 +415,7 @@ class Music(commands.Cog):
     async def _loop(self, ctx: commands.Context):
 
         if not ctx.voice_state.is_playing:
-            return await ctx.send('Rien à jouer dumbass.')
+            return await ctx.send('Rien à jouer.')
 
         # Inverse boolean value to loop and unloop.
         ctx.voice_state.loop = not ctx.voice_state.loop
@@ -451,7 +449,7 @@ class Music(commands.Cog):
                 raise commands.CommandError('Bot is already in a voice channel.')
 
 
-bot = commands.Bot(['music.','Music.'], description='Yet another music bot.')
+bot = commands.Bot(['music.','Music.'], description='It is music only.')
 bot.add_cog(Music(bot))
 
 
@@ -459,4 +457,4 @@ bot.add_cog(Music(bot))
 async def on_ready():
     print('Logged in as:\n{0.user.name}\n{0.user.id}'.format(bot))
 
-bot.run('ODkzNTAxOTc2OTQ2NTQwNTc2.YVcYjw.fmx2x4MLnpBRXNNO8PlNBORrcF8')
+bot.run('token')
